@@ -1,18 +1,21 @@
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import React from "react";
 import Header from './Components/Header'
-import { createMuiTheme, ThemeProvider, Container } from '@material-ui/core'
-import HomePageGrid from './Components/HomePageGrid';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core'
+import AboutMeCard from './Components/AboutMe';
+import HomePageComponent from './Components/HomePageComponent';
 
 const theme = createMuiTheme({
   palette: {
-    type: 'dark',
+    type: 'light',
     primary: {
-      main: '#424242',
+      main: '#6d6d6d', //424242
       light: '#6d6d6d',
       dark: '#1b1b1b',
       contrastTest: '#ffffff'
     },
     secondary: {
-      main: '#2e7d32',
+      main: '#60ad5e', //2e7d32
       light: '#60ad5e',
       dark: '#005005',
       contrastTest: 'ffffff'
@@ -23,14 +26,16 @@ const theme = createMuiTheme({
 
 function App() {
   return (
-    <div>
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={theme}> 
+        <BrowserRouter>   
         <Header/>
-        <Container>
-          <HomePageGrid/>
-        </Container>
+        <Switch>
+          <Route exact path="/" component={HomePageComponent}></Route>
+          <Route path="/AboutMe" component={AboutMeCard}></Route>
+        </Switch>       
+          
+        </BrowserRouter>
       </ThemeProvider>
-    </div>
   );
 }
 

@@ -6,7 +6,6 @@ const useStyles = makeStyles((theme) => ({
   card: {
     margin: theme.spacing(1),
     maxWidth: 500,
-    boxShadow: 3
   }
 }));
 
