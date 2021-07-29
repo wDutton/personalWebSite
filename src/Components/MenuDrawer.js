@@ -10,7 +10,9 @@ import ListItemText from '@material-ui/core/ListItemText';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import HomeIcon from '@material-ui/icons/Home';
-import InfoIcon from '@material-ui/icons/Info';
+import ComputerIcon from '@material-ui/icons/Computer';
+import MenuBookIcon from '@material-ui/icons/MenuBook';
+import ContactsIcon from '@material-ui/icons/Contacts';
 import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
@@ -19,6 +21,9 @@ const useStyles = makeStyles((theme) => ({
   },
   menuStyle: {
     marginRight: theme.spacing(3)
+  },
+  icons : {
+    color: theme.palette.secondary.main
   }
 }));
 
@@ -51,10 +56,19 @@ export default function MenuDrawer() {
       </List>
       <Divider />
       <List>
-        <ListItem button component={Link} to="/AboutMe">
-          <ListItemIcon><InfoIcon /></ListItemIcon>
-          <ListItemText primary="About" />
+        <ListItem button component={Link} to="/Resume">
+          <ListItemIcon><MenuBookIcon /></ListItemIcon>
+          <ListItemText primary="Resume" />
         </ListItem>
+        <ListItem button component={Link} to="/TechKnowledge">
+          <ListItemIcon><ComputerIcon /></ListItemIcon>
+          <ListItemText primary="Tech Knowledge" />
+        </ListItem>
+        <ListItem button component={Link} to="/Contact">
+          <ListItemIcon><ContactsIcon /></ListItemIcon>
+          <ListItemText primary="Contact Info" />
+        </ListItem>
+
       </List>
     </div>
   );
@@ -62,8 +76,8 @@ export default function MenuDrawer() {
   return (
     <div>
       <React.Fragment>
-        <IconButton className={classes.menuStyle} onClick={toggleDrawer('left', true)}><MenuIcon color="secondary" fontSize="large"></MenuIcon></IconButton>
-        <Drawer anchor='left' open={state['left']} onClose={toggleDrawer('left', false)}>
+        <IconButton className={classes.menuStyle} onClick={toggleDrawer('left', true)}><MenuIcon className={classes.icons} fontSize="large"></MenuIcon></IconButton>
+        <Drawer  anchor='left' open={state['left']} onClose={toggleDrawer('left', false)}>
           {list('left')}
         </Drawer>
       </React.Fragment>

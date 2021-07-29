@@ -23,10 +23,10 @@ function AboutMeCard() {
           subheader="Software Engineer" title="William Dutton" />
           <CardMedia
           component="img"
-          alt="Contemplative Reptile"
+          alt="Golf Swing"
           height="350"
           image={lakePic}
-          title="Contemplative Reptile"
+          title="Profile Picture"
         />
         <CardContent>
           <Typography variant="body2" component="p">

@@ -1,39 +1,76 @@
 import React from 'react'
-import { AppBar, Toolbar, IconButton, } from "@material-ui/core"
+import { AppBar, Toolbar, IconButton, Hidden, } from "@material-ui/core"
+import { shadows } from '@material-ui/system';
 import wduttonLogo from '../images/wduttonLogo.gif'
 import { makeStyles } from '@material-ui/core'
 import GitHubIcon from '@material-ui/icons/GitHub';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
 import MenuDrawer from './MenuDrawer';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+
+import { Link } from 'react-router-dom';
+import List from '@material-ui/core/List';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
   icons: {
-    margin: theme.spacing(1),
+    color: theme.palette.secondary.main
+  },
+  appBar: {
+    boxShadow: shadows
+  },
+  listContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    padding: 0,
+    color: theme.palette.secondary.main
   }
 }));
 
 function Header() {
   const classes = useStyles();
+  const [selectedIndex, setSelectedIndex] = React.useState(1);
+
+  const handleListItemClick = (event, index) => {
+    setSelectedIndex(index);
+  };
+
+
   return (
-    <div>
-      <AppBar position="static">
-        <Toolbar>
+    <AppBar position="static">
+      <Toolbar variant="dense">
+        <Hidden mdUp>
           <MenuDrawer></MenuDrawer>
-          <div style={{marginTop: 4 }} className={classes.root}>
+        </Hidden>
+        <div style={{ marginTop: 4 }} className={classes.root}>
+          <Hidden xsDown>
             <img src={wduttonLogo} alt="hello"></img>
-          </div>
-          <IconButton href="https://github.com/wDutton" title="Github" className={classes.links}>
-            <GitHubIcon color="secondary" fontSize="large"></GitHubIcon>
-          </IconButton>
-          <IconButton href="https://www.linkedin.com/in/william-dutton-285687135/" title="LinkedIn" className={classes.links}>
-            <LinkedInIcon color="secondary" fontSize="large"></LinkedInIcon>
-          </IconButton>          
-        </Toolbar>
-      </AppBar>
-    </div>
+          </Hidden>
+        </div>
+        <Hidden smDown>
+          <List className={classes.listContainer}>
+            <ListItem button component={Link} to="/" selected={selectedIndex === 0} onClick={(event) => handleListItemClick(event, 0)}>
+              <ListItemText primary="Home" />
+            </ListItem>
+            <ListItem button component={Link} to="/Resume" selected={selectedIndex === 1} onClick={(event) => handleListItemClick(event, 1)}>
+              <ListItemText primary="Resume" />
+            </ListItem>
+            <ListItem button component={Link} to="/Contact" selected={selectedIndex === 2} onClick={(event) => handleListItemClick(event, 2)}>
+              <ListItemText primary="Contact" />
+            </ListItem>
+          </List>
+        </Hidden>
+        <IconButton href="https://github.com/wDutton" title="Github" >
+          <GitHubIcon className={classes.icons} fontSize="large"></GitHubIcon>
+        </IconButton>
+        <IconButton href="https://www.linkedin.com/in/william-dutton-285687135/" title="LinkedIn">
+          <LinkedInIcon className={classes.icons} fontSize="large"></LinkedInIcon>
+        </IconButton>
+      </Toolbar>
+    </AppBar>
   );
 }
 
