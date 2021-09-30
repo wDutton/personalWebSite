@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Container, Card, CardMedia, CardContent, Typography } from '@material-ui/core'
-import Resume from '../images/Resume2021.pdf'
+import Resume from '../images/Resume2021-1.pdf'
 
 
 
