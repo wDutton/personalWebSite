@@ -1,6 +1,5 @@
 import React from 'react'
 import { AppBar, Toolbar, IconButton, Hidden, } from "@material-ui/core"
-import { shadows } from '@material-ui/system';
 import wduttonLogo from '../images/wduttonLogo.gif'
 import { makeStyles } from '@material-ui/core'
 import GitHubIcon from '@material-ui/icons/GitHub';
@@ -8,6 +7,7 @@ import LinkedInIcon from '@material-ui/icons/LinkedIn';
 import MenuDrawer from './MenuDrawer';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
+import { borders } from '@material-ui/system';
 
 import { Link } from 'react-router-dom';
 import List from '@material-ui/core/List';
@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.secondary.main
   },
   appBar: {
-    boxShadow: shadows
+    position: "static"
   },
   listContainer: {
     display: 'flex',
@@ -32,16 +32,15 @@ const useStyles = makeStyles((theme) => ({
 
 function Header() {
   const classes = useStyles();
-  const [selectedIndex, setSelectedIndex] = React.useState(1);
-
+  const [selectedIndex, setSelectedIndex] = React.useState(0);
   const handleListItemClick = (event, index) => {
     setSelectedIndex(index);
   };
 
 
   return (
-    <AppBar position="static">
-      <Toolbar variant="dense">
+    <AppBar style={{borderBottom:"3px ridge #ff652f"}} className={classes.appBar}>
+      <Toolbar>
         <Hidden mdUp>
           <MenuDrawer></MenuDrawer>
         </Hidden>

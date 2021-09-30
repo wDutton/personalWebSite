@@ -19,9 +19,7 @@ const useStyles = makeStyles((theme) => ({
 function ContactPageComponent() {
   const classes = useStyles();
   return (
-    <div className={classes.pageName}>
-      <Typography variant="h3">Contact</Typography>
-    
+    <div className={classes.pageName}>    
     <Grid className={classes.root} container>
       <Grid item className={classes.card} xl>
         <CardContent>
